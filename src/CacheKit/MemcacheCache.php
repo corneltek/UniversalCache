@@ -49,5 +49,11 @@ class MemcacheCache
         $this->handle->flush();
     }
 
+    static function getInstance()
+    {
+        static $instance;
+        return $instance ? $instance : $instance = new static;
+    }
+
 }
 
