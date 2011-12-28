@@ -13,6 +13,10 @@ class CacheKitTest extends PHPUnit_Framework_TestCase
 
         $memory = $c->createBackend( 'MemoryCache' );
         ok( $memory );
+
+        $memory->set( 'foo' , '123' );
+
+        ok( $memory->get('foo') );
     }
 }
 

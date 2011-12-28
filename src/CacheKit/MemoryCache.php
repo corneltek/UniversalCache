@@ -17,6 +17,16 @@ class MemoryCache
         $this->_cache[ $key ] = $value;
     }
 
+    function __set($key,$value)
+    {
+        $this->set($key,$value);
+    }
+
+    function __get($key)
+    {
+        return $this->get($key);
+    }
+
     function remove($key)
     {
         unset( $this->_cache[ $key ] );
@@ -26,4 +36,11 @@ class MemoryCache
     {
         $this->_cache = array();
     }
+
+    static function getInstance()
+    {
+        static $instance;
+        return $instance ? $instance : $instance = new static;
+    }
+
 }
