@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.4.10" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0        http://pear.php.net/dtd/tasks-1.0.xsd        http://pear.php.net/dtd/package-2.0        http://pear.php.net/dtd/package-2.0.xsd">
   <name>CacheKit</name>
-  <channel>pear.corneltek.com</channel>
+  <channel>disappear.corneltek.com</channel>
   <summary>toolkits for cache.</summary>
   <description>toolkits for cache.</description>
   <lead>
@@ -11,7 +11,7 @@
     <active>yes</active>
   </lead>
   <date>2011-12-28</date>
-  <time>17:59:38</time>
+  <time>18:05:51</time>
   <version>
     <release>0.0.1</release>
     <api>0.0.1</api>
