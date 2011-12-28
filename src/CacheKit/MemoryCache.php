@@ -2,7 +2,7 @@
 namespace CacheKit;
 
 class MemoryCache
-    extends CacheInterface
+    implements CacheInterface
 {
     private $_cache = array();
 
@@ -19,7 +19,7 @@ class MemoryCache
 
     function remove($key)
     {
-        unset( $this->_cache[ $key ];
+        unset( $this->_cache[ $key ] );
     }
 
     function clear()

@@ -10,6 +10,8 @@
  */
 namespace CacheKit;
 
+use ReflectionClass;
+
 
 class CacheKit 
 {
@@ -65,7 +67,12 @@ class CacheKit
         $args = func_get_args();
         $class = array_shift( $args );
         $backendClass = '\\CacheKit\\' . $class;
-        $b = new $backendClass( $args );
+
+        $rc = new ReflectionClass($backendClass);
+        $b = $rc->newInstanceArgs($args);
+
+        // $b = call_user_func_array( array($backendClass,'new') , $args );
+        // $b = new $backendClass( $args );
         return $this->backends[]  = $b;
     }
 
