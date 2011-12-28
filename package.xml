@@ -11,10 +11,10 @@
     <active>yes</active>
   </lead>
   <date>2011-12-28</date>
-  <time>18:05:51</time>
+  <time>18:38:34</time>
   <version>
-    <release>0.0.1</release>
-    <api>0.0.1</api>
+    <release>0.0.2</release>
+    <api>0.0.2</api>
   </version>
   <stability>
     <release>alpha</release>
@@ -24,10 +24,14 @@
   <notes>-</notes>
   <contents>
     <dir name="/">
+      <file name="tests/CacheKit/CacheKitTest.php" role="test" md5sum="d8c48f4beed80d80a24454e67fcc4b50"/>
+      <file name="tests/bootstrap.php" role="test" md5sum="dd1d21a4f01dfb8a0858363ffa54ed84"/>
+      <file name="tests/helpers.php" role="test" md5sum="442b22ed35a844926391dc62c49ec706"/>
       <file name="src/CacheKit/ApcCache.php" role="php" md5sum="5d78a0edb06472a472d9c061b77c9d3b"/>
       <file name="src/CacheKit/CacheInterface.php" role="php" md5sum="5be47935fd9812870fcf13b7168e6353"/>
-      <file name="src/CacheKit/CacheKit.php" role="php" md5sum="d041142e5f81c151d6d7c4db1e6fb85e"/>
+      <file name="src/CacheKit/CacheKit.php" role="php" md5sum="90704bcc9d69728ee486c9eca84075e8"/>
       <file name="src/CacheKit/MemcacheCache.php" role="php" md5sum="0746c7fdbbe51c719c785784e521575a"/>
+      <file name="src/CacheKit/MemoryCache.php" role="php" md5sum="b2eabb14c358b8ebfcfa4c2f548665a0"/>
     </dir>
   </contents>
   <dependencies>
@@ -42,10 +46,14 @@
   </dependencies>
   <phprelease>
     <filelist>
+      <install name="tests/CacheKit/CacheKitTest.php" as="CacheKit/CacheKitTest.php"/>
+      <install name="tests/bootstrap.php" as="bootstrap.php"/>
+      <install name="tests/helpers.php" as="helpers.php"/>
       <install name="src/CacheKit/ApcCache.php" as="CacheKit/ApcCache.php"/>
       <install name="src/CacheKit/CacheInterface.php" as="CacheKit/CacheInterface.php"/>
       <install name="src/CacheKit/CacheKit.php" as="CacheKit/CacheKit.php"/>
       <install name="src/CacheKit/MemcacheCache.php" as="CacheKit/MemcacheCache.php"/>
+      <install name="src/CacheKit/MemoryCache.php" as="CacheKit/MemoryCache.php"/>
     </filelist>
   </phprelease>
 </package>
