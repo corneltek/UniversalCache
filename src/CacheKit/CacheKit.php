@@ -9,9 +9,7 @@
  *
  */
 namespace CacheKit;
-
 use ReflectionClass;
-
 
 class CacheKit 
 {
