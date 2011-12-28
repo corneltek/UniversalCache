@@ -13,7 +13,7 @@ namespace CacheKit;
 
 class CacheKit 
 {
-    public $backends = array();
+    private $backends = array();
 
     function __construct( $backends = array() )
     {
@@ -58,6 +58,15 @@ class CacheKit
     function getBackends()
     {
         return $this->backends;
+    }
+
+    function createBackend()
+    {
+        $args = func_get_args();
+        $class = array_shift( $args );
+        $backendClass = '\\CacheKit\\' . $class;
+        $b = new $backendClass( $args );
+        return $this->backends[]  = $b;
     }
 
 }
