@@ -15,5 +15,6 @@ interface CacheInterface
     function get($key);
     function set($key,$value,$ttl = 0);
     function remove($key);
+    function clear();
 }
 

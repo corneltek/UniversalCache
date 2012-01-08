@@ -39,6 +39,13 @@ class ApcCache
     {
         apc_clear_cache();
     }
+
+    static function getInstance()
+    {
+        static $instance;
+        return $instance ? $instance : $instance = new static;
+    }
+
 }
 
 
