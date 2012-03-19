@@ -11,7 +11,7 @@
     <active>yes</active>
   </lead>
   <date>2012-03-19</date>
-  <time>17:20:19</time>
+  <time>17:24:04</time>
   <version>
     <release>0.0.3</release>
     <api>0.0.3</api>
@@ -26,7 +26,7 @@
     <dir name="/">
       <file name="tests/bootstrap.php" role="test" md5sum="dd1d21a4f01dfb8a0858363ffa54ed84"/>
       <file name="tests/CacheKit/CacheKitTest.php" role="test" md5sum="5505c9e0536eda1020c2d5889b6601c6"/>
-      <file name="tests/CacheKit/FileSystemCacheTest.php" role="test" md5sum="c626e26d409f1d412b11302e3acaaee9"/>
+      <file name="tests/CacheKit/FileSystemCacheTest.php" role="test" md5sum="70b187842be10ddfa9d8828646b70a2f"/>
       <file name="tests/helpers.php" role="test" md5sum="442b22ed35a844926391dc62c49ec706"/>
       <file name="src/CacheKit/ApcCache.php" role="php" md5sum="0c3e1bee4981fafe91d2e42654779af5"/>
       <file name="src/CacheKit/CacheInterface.php" role="php" md5sum="b019c30691de7b4d990204080086483e"/>
