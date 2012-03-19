@@ -2,6 +2,7 @@
 namespace CacheKit;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
+use SerializerKit;
 
 class FileSystemCache
  implements CacheInterface
@@ -10,6 +11,8 @@ class FileSystemCache
 
     public $filenameBuilder;
 
+    public $serializer;
+    
     function __construct($options = array() )
     {
         if( isset($options['expiry']) )
@@ -19,6 +22,9 @@ class FileSystemCache
             $this->cacheDir = $options['cache_dir'];
         else
             $this->cacheDir = 'cache';
+
+        if( isset($options['serializer']) )
+            $this->serializer = $options['serializer'];
 
         if( ! file_exists($this->cacheDir) )
             mkdir($this->cacheDir, 0755, true );
@@ -35,6 +41,24 @@ class FileSystemCache
         return $this->cacheDir . DIRECTORY_SEPARATOR . $filename;
     }
 
+    function _decodeFile($file) 
+    {
+        $content = file_get_contents($file);
+        if( $this->serializer )
+            return $this->serializer->decode( $content );
+        return $content;
+    }
+
+    function _encodeFile($file,$data)
+    {
+        $content = null;
+        if( $this->serializer )
+            $content = $this->serializer->encode( $data );
+        else
+            $content = $data;
+        return file_put_contents( $file, $content );
+    }
+
     function get($key) 
     {
         $path = $this->_getCacheFilepath($key);
@@ -46,13 +70,14 @@ class FileSystemCache
         if( $this->expiry && (time() - filemtime($path)) > $this->expiry ) {
             return null;
         }
-        return file_get_contents($path);
+
+        return $this->_decodeFile($path);
     }
 
     function set($key,$value,$ttl = 0) 
     {
         $path = $this->_getCacheFilepath($key);
-        return file_put_contents($path, $value) !== false;
+        return $this->_encodeFile($path,$value) !== false;
     }
 
     function remove($key) 
