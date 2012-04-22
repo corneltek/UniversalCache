@@ -13,11 +13,16 @@ namespace CacheKit;
 class ApcCache
     implements CacheInterface
 {
-    public $namespace;
+    public $namespace = '';
 
-    function __construct( $namespace = '' )
+    public $defaultExpiry = 0;
+
+    function __construct( $options = array() )
     {
-        $this->namespace = $namespace;
+        if( isset($options['namespace']) )
+            $this->namespace = $options['namespace'];
+        if( isset($options['default_expiry'] ) )
+            $this->defaultExpiry = $options['default_expiry'];
     }
 
     function get($key)
@@ -25,8 +30,10 @@ class ApcCache
         return apc_fetch( $this->namespace . ':' . $key );
     }
 
-    function set($key,$value,$ttl = 0)
+    function set($key,$value,$ttl = null)
     {
+        if( null === $ttl && $this->defaultExpiry )
+            $ttl = $this->defaultExpiry;
         apc_store( $this->namespace . ':' . $key , $value , $ttl );
     }
 
