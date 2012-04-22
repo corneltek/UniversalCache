@@ -10,8 +10,8 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-04-04</date>
-  <time>15:14:23</time>
+  <date>2012-04-22</date>
+  <time>10:11:49</time>
   <version>
     <release>0.0.3</release>
     <api>0.0.3</api>
@@ -28,7 +28,7 @@
       <file name="tests/CacheKit/CacheKitTest.php" role="test" md5sum="5505c9e0536eda1020c2d5889b6601c6"/>
       <file name="tests/CacheKit/FileSystemCacheTest.php" role="test" md5sum="70b187842be10ddfa9d8828646b70a2f"/>
       <file name="tests/helpers.php" role="test" md5sum="442b22ed35a844926391dc62c49ec706"/>
-      <file name="src/CacheKit/ApcCache.php" role="php" md5sum="0c3e1bee4981fafe91d2e42654779af5"/>
+      <file name="src/CacheKit/ApcCache.php" role="php" md5sum="e89b6eb83664d65b6734252a10ebdaf9"/>
       <file name="src/CacheKit/CacheInterface.php" role="php" md5sum="b019c30691de7b4d990204080086483e"/>
       <file name="src/CacheKit/CacheKit.php" role="php" md5sum="90704bcc9d69728ee486c9eca84075e8"/>
       <file name="src/CacheKit/FileSystemCache.php" role="php" md5sum="965a62507e20f58f1090e99d6bc716c3"/>
