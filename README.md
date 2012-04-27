@@ -3,10 +3,11 @@ CacheKit
 
 CacheKit interface
 
-    $c = new CacheKit(array('Apc','MemoryCache'));
-
     $c = new CacheKit;
-    $memory = $c->createBackend( $memcache );
+    $memory = $c->createBackend( 'MemoryCache' );
+
+    $c->set( 'foo' , 123 );
+
     $memory->set( 'foo' , '123' );
     $memory->get('foo');
 
