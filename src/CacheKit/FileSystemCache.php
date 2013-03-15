@@ -13,35 +13,38 @@ class FileSystemCache
 
     public $serializer;
     
-    function __construct($options = array() )
+    public function __construct($options = array() )
     {
-        if( isset($options['expiry']) )
+        if ( isset($options['expiry']) ) {
             $this->expiry = $options['expiry'];
+        }
 
-        if( isset($options['cache_dir']) )
+        if ( isset($options['cache_dir']) ) {
             $this->cacheDir = $options['cache_dir'];
-        else
+        } else {
             $this->cacheDir = 'cache';
+        }
 
-        if( isset($options['serializer']) )
+        if ( isset($options['serializer']) ) {
             $this->serializer = $options['serializer'];
+        }
 
-        if( ! file_exists($this->cacheDir) )
+        if ( ! file_exists($this->cacheDir) ) {
             mkdir($this->cacheDir, 0755, true );
-
+        }
 
         $this->filenameBuilder = function($key) {
             return preg_replace('#\W+#','_',$key);
         };
     }
 
-    function _getCacheFilepath($key)
+    public function _getCacheFilepath($key)
     {
         $filename = call_user_func($this->filenameBuilder,$key);
         return $this->cacheDir . DIRECTORY_SEPARATOR . $filename;
     }
 
-    function _decodeFile($file) 
+    public function _decodeFile($file) 
     {
         $content = file_get_contents($file);
         if( $this->serializer )
@@ -49,7 +52,7 @@ class FileSystemCache
         return $content;
     }
 
-    function _encodeFile($file,$data)
+    public function _encodeFile($file,$data)
     {
         $content = null;
         if( $this->serializer )
@@ -59,7 +62,7 @@ class FileSystemCache
         return file_put_contents( $file, $content );
     }
 
-    function get($key) 
+    public function get($key) 
     {
         $path = $this->_getCacheFilepath($key);
 
@@ -74,20 +77,21 @@ class FileSystemCache
         return $this->_decodeFile($path);
     }
 
-    function set($key,$value,$ttl = 0) 
+    public function set($key,$value,$ttl = 0) 
     {
         $path = $this->_getCacheFilepath($key);
         return $this->_encodeFile($path,$value) !== false;
     }
 
-    function remove($key) 
+    public function remove($key) 
     {
         $path = $this->_getCacheFilepath($key);
         if( file_exists($path) )
             unlink( $path );
     }
 
-    function clear() {
+    public function clear() 
+    {
         $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($this->cacheDir),
                                                 RecursiveIteratorIterator::CHILD_FIRST);
         foreach ($iterator as $path) {
