@@ -1,6 +1,6 @@
 UniversalCache
 ========
-Generic cache interface for PHP.
+A Generic Cache Interface for PHP.
 
 ### UniversalCache Interface
 
@@ -53,4 +53,13 @@ $cache->clear();
 
 ok( null === $cache->get( $url ) );
 ```
+
+
+Hacking
+===========
+
+    $ pear install -a -f corneltek/Universal
+    $ pear install -a -f corneltek/PHPUnit_TestMore
+    $ onion install
+    $ phpunit
 

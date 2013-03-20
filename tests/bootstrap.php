@@ -1,5 +1,5 @@
 <?php
-require 'tests/helpers.php';
+require 'PHPUnit/TestMore.php';
 require 'Universal/ClassLoader/SplClassLoader.php';
 $loader = new \Universal\ClassLoader\SplClassLoader( array(  
     'UniversalCache' => 'src'
