@@ -1,9 +1,10 @@
 <?php
+use UniversalCache\FileSystemCache;
 
 class FileSystemCacheTest extends PHPUnit_Framework_TestCase
 {
 
-    function testSerializer()
+    public function testWithJsonSerializer()
     {
         $serializer = new SerializerKit\Serializer('json');
         $cache = new UniversalCache\FileSystemCache(array( 

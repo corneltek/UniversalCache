@@ -56,7 +56,7 @@ class FileSystemCache
         if ( $this->serializer ) {
             return $this->serializer->decode( $content );
         }
-        return $content;
+        return unserialize($content);
     }
 
     public function _encodeFile($file,$data)
@@ -65,7 +65,7 @@ class FileSystemCache
         if( $this->serializer ) {
             $content = $this->serializer->encode( $data );
         } else {
-            $content = $data;
+            $content = serialize($data);
         }
         return file_put_contents( $file, $content );
     }
