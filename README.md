@@ -30,6 +30,15 @@ $val = $cache->get($name);
 $cache->remove($name);
 ```
 
+### MemoryCache
+
+```php
+$cache = new UniversalCache\MemoryCache;
+$cache->set($name,$val);
+$val = $cache->get($name);
+$cache->remove($name);
+```
+
 ### MemcacheCache
 
 ```php
