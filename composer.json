@@ -1,5 +1,5 @@
 {
-    "name": "c9s/CacheKit",
+    "name": "c9s/cachekit",
     "homepage": "http://github.com/c9s/CacheKit",
     "description": "General cache interface",
     "require": {

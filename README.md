@@ -1,8 +1,8 @@
 CacheKit
 ========
+Generic cache interface for PHP.
 
-
-CacheKit Interface
+### CacheKit Interface
 
 ```php
 $c = new CacheKit;
@@ -14,7 +14,7 @@ $memory->set( 'foo' , '123' );
 $val = $memory->get('foo');
 ```
 
-ApcCache Interface
+### ApcCache Interface
 
 ```php
 $cache = new CacheKit\ApcCache(array( 
@@ -27,25 +27,27 @@ $cache->remove($name);
 ```
 
 
-FileSystemCache
+### FileSystemCache
 
-    $serializer = new SerializerKit\Serializer('json');
-    $cache = new CacheKit\FileSystemCache(array( 
-        'expiry' => 30,
-        'cache_dir' => 'cache',
-        'serializer' => $serializer,
-    ));
-    $cache->clear();
+```
+$serializer = new SerializerKit\Serializer('json');
+$cache = new CacheKit\FileSystemCache(array( 
+    'expiry' => 30,
+    'cache_dir' => 'cache',
+    'serializer' => $serializer,
+));
+$cache->clear();
 
-    $url = 'foo_bar';
-    $html = 'test content';
-    $cache->set( $url , $html );
+$url = 'foo_bar';
+$html = 'test content';
+$cache->set( $url , $html );
 
-    $cache->remove( $url );
+$cache->remove( $url );
 
-    ok( null === $cache->get( $url ) );
+ok( null === $cache->get( $url ) );
 
-    $cache->clear();
+$cache->clear();
 
-    ok( null === $cache->get( $url ) );
+ok( null === $cache->get( $url ) );
+```
 
