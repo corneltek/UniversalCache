@@ -15,17 +15,17 @@ class UniversalCache
 {
     private $backends = array();
 
-    function __construct( $backends = array() )
+    public function __construct($backends)
     {
-        $this->backends = $backends;
+        $this->backends = (array)$backends;
     }
 
-    function addBackend( $backend )
+    public function addBackend( $backend )
     {
         $this->backends[] = $backend;
     }
 
-    function get( $key )
+    public function get( $key )
     {
         foreach( $this->backends as $b ) {
             if( ($value = $b->get( $key )) !== false ) {
@@ -34,33 +34,33 @@ class UniversalCache
         }
     }
 
-    function set( $key , $value , $ttl = 1000 ) 
+    public function set( $key , $value , $ttl = 1000 ) 
     {
         foreach( $this->backends as $b ) {
             $b->set( $key , $value , $ttl );
         }
     }
 
-    function remove($key)
+    public function remove($key)
     {
         foreach( $this->backends as $b ) {
             $b->remove( $key );
         }
     }
 
-    function clear()
+    public function clear()
     {
         foreach( $this->backends as $b ) {
             $b->clear();
         }
     }
 
-    function getBackends()
+    public function getBackends()
     {
         return $this->backends;
     }
 
-    function createBackend()
+    public static function create()
     {
         $args = func_get_args();
         $class = array_shift( $args );

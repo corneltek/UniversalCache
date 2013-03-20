@@ -5,13 +5,17 @@ Generic cache interface for PHP.
 ### UniversalCache Interface
 
 ```php
-$c = new UniversalCache;
-$memory = $c->createBackend( 'MemoryCache' );
+$memory      = UniversalCache::create( 'MemoryCache' );
+$memcache    = UniversalCache::create( 'MemcacheCache' );
 
+$c = new UniversalCache(array($memory,$memcache));
 $c->set( 'foo' , 123 );
 
 $memory->set( 'foo' , '123' );
 $val = $memory->get('foo');
+
+$memcache->set('foo', '123' );
+$memcache->get('foo', '123' );
 ```
 
 ### ApcCache Interface
@@ -25,7 +29,6 @@ $cache->set($name,$val);
 $val = $cache->get($name);
 $cache->remove($name);
 ```
-
 
 ### FileSystemCache
 
