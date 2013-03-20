@@ -12,7 +12,7 @@ class FileSystemCache
 
     public $serializer;
 
-    public $cacheDir;
+    public $cacheDir = 'cache';
     
     public function __construct($options = array() )
     {
@@ -43,7 +43,11 @@ class FileSystemCache
     public function _getCacheFilepath($key)
     {
         $filename = preg_replace('#\W+#','_',$key);
-        return $this->cacheDir . DIRECTORY_SEPARATOR . $filename;
+        $subdir   = crc32($key);
+        if ( ! file_exists($this->cacheDir . DIRECTORY_SEPARATOR . $subdir ) ) {
+            mkdir( $this->cacheDir . DIRECTORY_SEPARATOR . $subdir );
+        }
+        return $this->cacheDir . DIRECTORY_SEPARATOR . $subdir . DIRECTORY_SEPARATOR . $filename;
     }
 
     public function _decodeFile($file) 
