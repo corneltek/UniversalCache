@@ -1,5 +1,5 @@
 {
-    "name": "c9s/universal-cache",
+    "name": "corneltek/universal-cache",
     "homepage": "http://github.com/c9s/UniversalCache",
     "description": "General cache interface",
     "require": {
