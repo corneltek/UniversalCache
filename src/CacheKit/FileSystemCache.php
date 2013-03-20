@@ -38,6 +38,7 @@ class FileSystemCache
         };
     }
 
+
     public function _getCacheFilepath($key)
     {
         $filename = call_user_func($this->filenameBuilder,$key);
@@ -60,6 +61,16 @@ class FileSystemCache
         else
             $content = $data;
         return file_put_contents( $file, $content );
+    }
+
+    public function __get($key)
+    {
+        return $this->get($key);
+    }
+
+    public function __set($key,$val)
+    {
+        return $this->set($key,$val);
     }
 
     public function get($key) 

@@ -18,7 +18,7 @@ class MemcacheCache
     private $handle;
     public $compress = false;
 
-    function __construct($servers = array() )
+    public function __construct($servers = array() )
     {
         $this->handle = new Memcache;
         foreach( $servers as $server ) {
@@ -27,24 +27,35 @@ class MemcacheCache
         }
     }
 
-    function set($key,$value,$ttl = 0)
+    public function __get($key)
+    {
+        return $this->get($key);
+    }
+
+    public function __set($key,$val)
+    {
+        return $this->set($key,$val);
+    }
+
+    public function set($key,$value,$ttl = 0)
     {
         $this->handle->set( $key , serialize( $value ) , $this->compress , $ttl );
     }
 
-    function get($key)
+    public function get($key)
     {
         $v = $this->handle->get( $key );
-        if( $v )
+        if ( $v ) {
             return unserialize($v);
+        }
     }
 
-    function remove($key)
+    public function remove($key)
     {
         $this->handle->delete($key);
     }
 
-    function clear()
+    public function clear()
     {
         $this->handle->flush();
     }

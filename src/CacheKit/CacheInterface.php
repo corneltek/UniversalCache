@@ -12,9 +12,9 @@ namespace CacheKit;
 
 interface CacheInterface
 {
-    function get($key);
-    function set($key,$value,$ttl = 0);
-    function remove($key);
-    function clear();
+    public function get($key);
+    public function set($key,$value,$ttl = 0);
+    public function remove($key);
+    public function clear();
 }
 

@@ -1,15 +1,30 @@
 CacheKit
 ========
 
-CacheKit interface
 
-    $c = new CacheKit;
-    $memory = $c->createBackend( 'MemoryCache' );
+CacheKit Interface
 
-    $c->set( 'foo' , 123 );
+```php
+$c = new CacheKit;
+$memory = $c->createBackend( 'MemoryCache' );
 
-    $memory->set( 'foo' , '123' );
-    $memory->get('foo');
+$c->set( 'foo' , 123 );
+
+$memory->set( 'foo' , '123' );
+$val = $memory->get('foo');
+```
+
+ApcCache Interface
+
+```php
+$cache = new CacheKit\ApcCache(array( 
+    'namespace' => 'app_',
+    'default_expiry' => 3600,
+));
+$cache->set($name,$val);
+$val = $cache->get($name);
+$cache->remove($name);
+```
 
 
 FileSystemCache

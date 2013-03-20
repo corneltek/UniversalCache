@@ -17,34 +17,46 @@ class ApcCache
 
     public $defaultExpiry = 0;
 
-    function __construct( $options = array() )
+    public function __construct( $options = array() )
     {
-        if( isset($options['namespace']) )
+        if ( isset($options['namespace']) ) {
             $this->namespace = $options['namespace'];
-        if( isset($options['default_expiry'] ) )
+        }
+        if ( isset($options['default_expiry'] ) ) {
             $this->defaultExpiry = $options['default_expiry'];
+        }
     }
 
-    function get($key)
+    public function get($key)
     {
         return apc_fetch( $this->namespace . ':' . $key );
     }
 
-    function set($key,$value,$ttl = null)
+    public function set($key,$value,$ttl = null)
     {
         if( null === $ttl && $this->defaultExpiry )
             $ttl = $this->defaultExpiry;
         apc_store( $this->namespace . ':' . $key , $value , $ttl );
     }
 
-    function remove($key)
+    public function remove($key)
     {
         apc_delete( $this->namespace . ':' . $key );
     }
 
-    function clear()
+    public function clear()
     {
         apc_clear_cache();
+    }
+
+    public function __get($name)
+    {
+        return $this->get($name);
+    }
+
+    public function __set($name,$value)
+    {
+        $this->set($name,$value);
     }
 
     static function getInstance()

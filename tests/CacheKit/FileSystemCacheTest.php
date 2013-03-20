@@ -29,7 +29,7 @@ class FileSystemCacheTest extends PHPUnit_Framework_TestCase
         ok( null === $cache->get( $url ) );
     }
 
-    function test()
+    public function test()
     {
         $cache = new CacheKit\FileSystemCache(array( 
             'expiry' => 30,
@@ -37,7 +37,7 @@ class FileSystemCacheTest extends PHPUnit_Framework_TestCase
         ));
 
         $url = 'http://google.com';
-        $cache->set( $url , $html = file_get_contents($url) );
+        $cache->set( $url , $html = 'blah' );
         $html2 = $cache->get( $url );
 
         is( $html , $html2 );
