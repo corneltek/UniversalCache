@@ -18,7 +18,7 @@ $memcache->set('foo', '123' );
 $memcache->get('foo', '123' );
 ```
 
-### ApcCache Interface
+### ApcCache
 
 ```php
 $cache = new UniversalCache\ApcCache(array( 
@@ -29,6 +29,18 @@ $cache->set($name,$val);
 $val = $cache->get($name);
 $cache->remove($name);
 ```
+
+### MemcacheCache
+
+```php
+$cache = new UniversalCache\MemcacheCache(array( 
+    'servers' => [ ['localhost', 123123], ['server2',123123] ]
+));
+$cache->set($name,$val);
+$val = $cache->get($name);
+$cache->remove($name);
+```
+
 
 ### FileSystemCache
 
