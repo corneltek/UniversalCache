@@ -1,11 +1,11 @@
-CacheKit
+UniversalCache
 ========
 Generic cache interface for PHP.
 
-### CacheKit Interface
+### UniversalCache Interface
 
 ```php
-$c = new CacheKit;
+$c = new UniversalCache;
 $memory = $c->createBackend( 'MemoryCache' );
 
 $c->set( 'foo' , 123 );
@@ -17,7 +17,7 @@ $val = $memory->get('foo');
 ### ApcCache Interface
 
 ```php
-$cache = new CacheKit\ApcCache(array( 
+$cache = new UniversalCache\ApcCache(array( 
     'namespace' => 'app_',
     'default_expiry' => 3600,
 ));
@@ -31,7 +31,7 @@ $cache->remove($name);
 
 ```
 $serializer = new SerializerKit\Serializer('json');
-$cache = new CacheKit\FileSystemCache(array( 
+$cache = new UniversalCache\FileSystemCache(array( 
     'expiry' => 30,
     'cache_dir' => 'cache',
     'serializer' => $serializer,

@@ -1,6 +1,6 @@
 {
     "name": "c9s/cachekit",
-    "homepage": "http://github.com/c9s/CacheKit",
+    "homepage": "http://github.com/c9s/UniversalCache",
     "description": "General cache interface",
     "require": {
         "php": ">=5.3.0"
@@ -13,5 +13,5 @@
             "homepage": "http://c9s.me"
         }
     ],
-    "autoload": { "psr-0": { "CacheKit": "src" } }
+    "autoload": { "psr-0": { "UniversalCache": "src" } }
 }

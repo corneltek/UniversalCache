@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the CacheKit package.
+ * This file is part of the UniversalCache package.
  *
  * (c) Yo-An Lin <cornelius.howl@gmail.com>
  *
@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  *
  */
-namespace CacheKit;
+namespace UniversalCache;
 
 class ApcCache
     implements CacheInterface

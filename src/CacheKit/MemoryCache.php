@@ -1,5 +1,5 @@
 <?php
-namespace CacheKit;
+namespace UniversalCache;
 
 class MemoryCache
     implements CacheInterface

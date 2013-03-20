@@ -1,14 +1,14 @@
 <?php
 
 
-namespace CacheKit;
+namespace UniversalCache;
 use PHPUnit_Framework_TestCase;
 
-class CacheKitTest extends PHPUnit_Framework_TestCase
+class UniversalCacheTest extends PHPUnit_Framework_TestCase
 {
     function test()
     {
-        $c = new CacheKit;
+        $c = new UniversalCache;
         ok( $c );
 
         $memory = $c->createBackend( 'MemoryCache' );

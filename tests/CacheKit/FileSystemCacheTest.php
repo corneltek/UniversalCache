@@ -6,7 +6,7 @@ class FileSystemCacheTest extends PHPUnit_Framework_TestCase
     function testSerializer()
     {
         $serializer = new SerializerKit\Serializer('json');
-        $cache = new CacheKit\FileSystemCache(array( 
+        $cache = new UniversalCache\FileSystemCache(array( 
             'expiry' => 30,
             'cache_dir' => 'cache',
             'serializer' => $serializer,
@@ -31,7 +31,7 @@ class FileSystemCacheTest extends PHPUnit_Framework_TestCase
 
     public function test()
     {
-        $cache = new CacheKit\FileSystemCache(array( 
+        $cache = new UniversalCache\FileSystemCache(array( 
             'expiry' => 30,
             'cache_dir' => 'cache',
         ));

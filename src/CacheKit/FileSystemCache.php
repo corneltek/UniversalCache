@@ -1,5 +1,5 @@
 <?php
-namespace CacheKit;
+namespace UniversalCache;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use SerializerKit;
