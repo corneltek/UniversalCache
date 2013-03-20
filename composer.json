@@ -3,7 +3,8 @@
     "homepage": "http://github.com/c9s/UniversalCache",
     "description": "General cache interface",
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.0",
+        "c9s/fileutil": "dev-master"
     },
     "license": "MIT",
     "authors": [
