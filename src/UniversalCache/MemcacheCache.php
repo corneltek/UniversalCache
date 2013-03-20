@@ -9,22 +9,41 @@
  *
  */
 namespace UniversalCache;
-
 use Memcache;
+use Exception;
+use RuntimeException;
 
 class MemcacheCache 
-    implements CacheInterface
 {
     private $handle;
     public $compress = false;
 
-    public function __construct($servers = array() )
+    /**
+     * @param array $options 
+     *
+     *    servers [ ['localhost',65566], [...] ]
+     */
+    public function __construct($options = array() )
     {
         $this->handle = new Memcache;
-        foreach( $servers as $server ) {
-            $this->handle->connect( $server[0] , $server[1] ) 
-                or die ("Could not connect");
+        if ( isset($options['server']) ) {
+            $server = $options['server'];
+            if ( false === $this->handle->addServer( $server[0] , $server[1] ) ) {
+                throw new RuntimeException("Could not add memcache server.");
+            }
         }
+        elseif ( isset($options['servers']) ) {
+            foreach( $servers as $server ) {
+                if ( false === $this->handle->addServer( $server[0] , $server[1] ) ) {
+                    throw new RuntimeException("Could not add memcache server.");
+                }
+            }
+        }
+    }
+
+    public function getHandle()
+    {
+        return $this->handle;
     }
 
     public function __get($key)

@@ -65,13 +65,12 @@ class UniversalCache
         $args = func_get_args();
         $class = array_shift( $args );
         $backendClass = '\\UniversalCache\\' . $class;
-
         $rc = new ReflectionClass($backendClass);
         $b = $rc->newInstanceArgs($args);
 
         // $b = call_user_func_array( array($backendClass,'new') , $args );
         // $b = new $backendClass( $args );
-        return $this->backends[]  = $b;
+        return $b;
     }
 
 }

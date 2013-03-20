@@ -11,7 +11,6 @@
 namespace UniversalCache;
 
 class ApcCache
-    implements CacheInterface
 {
     public $namespace = '';
 

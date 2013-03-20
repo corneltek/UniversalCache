@@ -5,13 +5,14 @@ use RecursiveDirectoryIterator;
 use SerializerKit;
 
 class FileSystemCache
- implements CacheInterface
 {
     public $expiry; // seconds
 
     public $filenameBuilder;
 
     public $serializer;
+
+    public $cacheDir;
     
     public function __construct($options = array() )
     {
@@ -41,25 +42,27 @@ class FileSystemCache
 
     public function _getCacheFilepath($key)
     {
-        $filename = call_user_func($this->filenameBuilder,$key);
+        $filename = preg_replace('#\W+#','_',$key);
         return $this->cacheDir . DIRECTORY_SEPARATOR . $filename;
     }
 
     public function _decodeFile($file) 
     {
         $content = file_get_contents($file);
-        if( $this->serializer )
+        if ( $this->serializer ) {
             return $this->serializer->decode( $content );
+        }
         return $content;
     }
 
     public function _encodeFile($file,$data)
     {
         $content = null;
-        if( $this->serializer )
+        if( $this->serializer ) {
             $content = $this->serializer->encode( $data );
-        else
+        } else {
             $content = $data;
+        }
         return file_put_contents( $file, $content );
     }
 

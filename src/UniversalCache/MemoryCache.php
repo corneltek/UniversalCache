@@ -2,7 +2,6 @@
 namespace UniversalCache;
 
 class MemoryCache
-    implements CacheInterface
 {
     private $_cache = array();
 
