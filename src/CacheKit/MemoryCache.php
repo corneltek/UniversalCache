@@ -6,33 +6,33 @@ class MemoryCache
 {
     private $_cache = array();
 
-    function get($key)
+    public function get($key)
     {
-        if( isset($this->_cache[ $key ] ) )
+        if ( isset($this->_cache[ $key ] ) )
             return $this->_cache[ $key ];
     }
 
-    function set($key,$value,$ttl = 0)
+    public function set($key,$value,$ttl = 0)
     {
         $this->_cache[ $key ] = $value;
     }
 
-    function __set($key,$value)
+    public function __set($key,$value)
     {
         $this->set($key,$value);
     }
 
-    function __get($key)
+    public function __get($key)
     {
         return $this->get($key);
     }
 
-    function remove($key)
+    public function remove($key)
     {
         unset( $this->_cache[ $key ] );
     }
 
-    function clear()
+    public function clear()
     {
         $this->_cache = array();
     }
