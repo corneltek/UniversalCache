@@ -4,7 +4,7 @@
     "description": "General cache interface",
     "require": {
         "php": ">=5.3.0",
-        "c9s/fileutil": "dev-master"
+        "corneltek/fileutil": "dev-master"
     },
     "license": "MIT",
     "authors": [
