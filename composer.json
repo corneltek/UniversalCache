@@ -14,6 +14,5 @@
             "homepage": "http://c9s.me"
         }
     ],
-    "minimum-stability": "stable",
     "autoload": { "psr-0": { "UniversalCache": "src" } }
 }
