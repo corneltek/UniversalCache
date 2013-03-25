@@ -4,6 +4,21 @@ A Generic Cache Interface for PHP.
 
 ### UniversalCache Interface
 
+UniversalCache class provides an interface to operate on different cache backend,
+you may put the fastest cache backend to the first position, so that 
+you can fetch the cache very quickly.
+
+```php
+use UniversalCache;
+$cache = new UniversalCache(array( 
+new ApcCache(array( 'namespace' => 'app_' )),
+new FileSystemCache(array( 'cache_dir' => ... ))
+));
+$cache->set('key', 'value');
+$value = $cache->get('key');
+```
+
+
 ```php
 $memory      = UniversalCache::create( 'MemoryCache' );
 $memcache    = UniversalCache::create( 'MemcacheCache' );
@@ -17,6 +32,8 @@ $val = $memory->get('foo');
 $memcache->set('foo', '123' );
 $memcache->get('foo', '123' );
 ```
+
+
 
 ### ApcCache
 

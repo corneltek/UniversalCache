@@ -10,6 +10,27 @@
  */
 namespace UniversalCache;
 use ReflectionClass;
+use Exception;
+
+
+/**
+ * UniversalCache class provides an interface to operate data on different 
+ * cache backend,
+ * you may put the fastest cache backend to the first position, so that you can 
+ * fetch the cache very quickly.
+ *
+ *
+ * e.g.,
+ *
+ *    use UniversalCache;
+ *    $cache = new UniversalCache(array( 
+ *      new ApcCache(array( 'namespace' => 'app_' )),
+ *      new FileSystemCache(array( 'cache_dir' => ... ))
+ *    ));
+ *    $cache->set('key', 'value');
+ *    $value = $cache->get('key');
+ *
+ */
 
 class UniversalCache 
 {
