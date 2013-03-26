@@ -84,8 +84,9 @@ class FileSystemCache
     {
         $path = $this->_getCacheFilepath($key);
 
-        if( ! file_exists($path) )
+        if ( ! file_exists($path) ) {
             return null;
+        }
 
         // is expired ?
         if( $this->expiry && (time() - filemtime($path)) > $this->expiry ) {
@@ -104,8 +105,7 @@ class FileSystemCache
     public function remove($key) 
     {
         $path = $this->_getCacheFilepath($key);
-        if( file_exists($path) )
-            unlink( $path );
+        futil_unlink_if_exists($path);
     }
 
     public function clear() 
