@@ -14,7 +14,7 @@ class FileSystemCache
 
     public $cacheDir = 'cache';
 
-    public $mask = 0777;
+    public $umask = 0777;
     
     public function __construct($options = array() )
     {
@@ -33,7 +33,7 @@ class FileSystemCache
         }
 
         if ( ! file_exists($this->cacheDir) ) {
-            mkdir($this->cacheDir, $this->mask, true );
+            mkdir($this->cacheDir, $this->umask, true );
         }
 
         $this->filenameBuilder = function($key) {
@@ -46,7 +46,7 @@ class FileSystemCache
     {
         $filename = preg_replace('#\W+#','_',$key);
         $subdir   = crc32($key);
-        futil_mkdir_if_not_exists( $this->cacheDir . DIRECTORY_SEPARATOR . $subdir , $this->mask );
+        futil_mkdir_if_not_exists( $this->cacheDir . DIRECTORY_SEPARATOR . $subdir , $this->umask , true );
         return $this->cacheDir . DIRECTORY_SEPARATOR . $subdir . DIRECTORY_SEPARATOR . $filename;
     }
 
