@@ -13,6 +13,8 @@ class FileSystemCache
     public $serializer;
 
     public $cacheDir = 'cache';
+
+    public $mask = 0777;
     
     public function __construct($options = array() )
     {
@@ -31,7 +33,7 @@ class FileSystemCache
         }
 
         if ( ! file_exists($this->cacheDir) ) {
-            mkdir($this->cacheDir, 0755, true );
+            mkdir($this->cacheDir, $this->mask, true );
         }
 
         $this->filenameBuilder = function($key) {
@@ -44,7 +46,7 @@ class FileSystemCache
     {
         $filename = preg_replace('#\W+#','_',$key);
         $subdir   = crc32($key);
-        futil_mkdir_if_not_exists( $this->cacheDir . DIRECTORY_SEPARATOR . $subdir );
+        futil_mkdir_if_not_exists( $this->cacheDir . DIRECTORY_SEPARATOR . $subdir , $this->mask );
         return $this->cacheDir . DIRECTORY_SEPARATOR . $subdir . DIRECTORY_SEPARATOR . $filename;
     }
 
