@@ -44,9 +44,7 @@ class FileSystemCache
     {
         $filename = preg_replace('#\W+#','_',$key);
         $subdir   = crc32($key);
-        if ( ! file_exists($this->cacheDir . DIRECTORY_SEPARATOR . $subdir ) ) {
-            mkdir( $this->cacheDir . DIRECTORY_SEPARATOR . $subdir );
-        }
+        futil_mkdir_if_not_exists( $this->cacheDir . DIRECTORY_SEPARATOR . $subdir );
         return $this->cacheDir . DIRECTORY_SEPARATOR . $subdir . DIRECTORY_SEPARATOR . $filename;
     }
 
