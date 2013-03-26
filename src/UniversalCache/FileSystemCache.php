@@ -15,7 +15,7 @@ class FileSystemCache
     public $cacheDir = 'cache';
 
     public $umask = 0777;
-    
+
     public function __construct($options = array() )
     {
         if ( isset($options['expiry']) ) {

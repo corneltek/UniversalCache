@@ -33,6 +33,7 @@ class MemcacheCache
             }
         }
         elseif ( isset($options['servers']) ) {
+            $servers = $options['servers'];
             foreach( $servers as $server ) {
                 if ( false === $this->handle->addServer( $server[0] , $server[1] ) ) {
                     throw new RuntimeException("Could not add memcache server.");
