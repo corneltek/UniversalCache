@@ -3,12 +3,10 @@
     "homepage": "http:\/\/github.com\/c9s\/UniversalCache",
     "description": "General cache interface",
     "require": {
-        "php": ">=5.3.0",
-        "corneltek\/fileutil": "~1.6"
+        "php": ">=5.5.0",
+        "corneltek/fileutil": "~1.6"
     },
-    "require-dev": {
-        "corneltek\/phpunit-testmore": "dev-master"
-    },
+    "require-dev": { "corneltek\/phpunit-testmore": "dev-master" },
     "license": "MIT",
     "authors": [
         {
@@ -17,10 +15,6 @@
             "homepage": "http:\/\/c9s.me"
         }
     ],
-    "autoload": {
-        "psr-0": {
-            "UniversalCache": "src"
-        }
-    },
-    "version": "1.0.6"
+    "extra": { "branch-alias": { "dev-master": "2.0.x-dev" } },
+    "autoload": { "psr-4": { "UniversalCache\\": "src/UniversalCache/" } }
 }
