@@ -7,9 +7,7 @@ class FileSystemCacheTest extends PHPUnit_Framework_TestCase
     public function testWithJsonSerializer()
     {
         $serializer = new SerializerKit\Serializer('json');
-        $cache = new UniversalCache\FileSystemCache(array( 
-            'expiry' => 30,
-            'cache_dir' => 'cache',
+        $cache = new UniversalCache\FileSystemCache('cache', array( 
             'serializer' => $serializer,
         ));
         $cache->clear();
@@ -32,9 +30,8 @@ class FileSystemCacheTest extends PHPUnit_Framework_TestCase
 
     public function test()
     {
-        $cache = new UniversalCache\FileSystemCache(array( 
-            'expiry' => 30,
-            'cache_dir' => 'cache',
+        $cache = new UniversalCache\FileSystemCache('cache', array( 
+           'expiry' => 30,
         ));
 
         $url = 'http://google.com';

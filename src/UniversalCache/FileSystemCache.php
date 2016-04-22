@@ -10,59 +10,49 @@ class FileSystemCache
 
     public $filenameBuilder;
 
-    public $serializer;
+    protected $serializer;
 
-    public $cacheDir = 'cache';
+    public $cacheDir;
 
     public $umask = 0777;
 
-    public function __construct($options = array() )
+    public function __construct($cacheDir, array $options = array())
     {
-        if ( isset($options['expiry']) ) {
+        $this->cacheDir = $cacheDir;
+        if (isset($options['expiry'])) {
             $this->expiry = $options['expiry'];
         }
-
-        if ( isset($options['cache_dir']) ) {
-            $this->cacheDir = $options['cache_dir'];
-        } else {
-            $this->cacheDir = 'cache';
-        }
-
-        if ( isset($options['serializer']) ) {
+        if (isset($options['serializer'])) {
             $this->serializer = $options['serializer'];
         }
-
-        if ( ! file_exists($this->cacheDir) ) {
-            mkdir($this->cacheDir, $this->umask, true );
-        }
-
         $this->filenameBuilder = function($key) {
             return preg_replace('#\W+#','_',$key);
         };
     }
 
-
-    public function _getCacheFilepath($key)
+    private function _getCacheFilepath($key)
     {
         $filename = preg_replace('#\W+#','_',$key);
-        $subdir   = crc32($key);
-        futil_mkdir_if_not_exists( $this->cacheDir . DIRECTORY_SEPARATOR . $subdir , $this->umask , true );
-        return $this->cacheDir . DIRECTORY_SEPARATOR . $subdir . DIRECTORY_SEPARATOR . $filename;
+        $fregdir   = $this->cacheDir . DIRECTORY_SEPARATOR . crc32($key);
+        if (!file_exists($fregdir)) {
+            mkdir($fregdir, $this->umask, true);
+        }
+        return $fregdir . DIRECTORY_SEPARATOR . $filename;
     }
 
-    public function _decodeFile($file) 
+    private function _decodeFile($file) 
     {
         $content = file_get_contents($file);
-        if ( $this->serializer ) {
+        if ($this->serializer) {
             return $this->serializer->decode( $content );
         }
         return unserialize($content);
     }
 
-    public function _encodeFile($file,$data)
+    private function _encodeFile($file,$data)
     {
         $content = null;
-        if( $this->serializer ) {
+        if ($this->serializer) {
             $content = $this->serializer->encode( $data );
         } else {
             $content = serialize($data);
@@ -98,14 +88,18 @@ class FileSystemCache
 
     public function set($key,$value,$ttl = 0) 
     {
-        $path = $this->_getCacheFilepath($key);
-        return $this->_encodeFile($path,$value) !== false;
+        if ($path = $this->_getCacheFilepath($key)) {
+            return $this->_encodeFile($path,$value) !== false;
+        }
     }
 
     public function remove($key) 
     {
-        $path = $this->_getCacheFilepath($key);
-        futil_unlink_if_exists($path);
+        if ($path = $this->_getCacheFilepath($key)) {
+            if (file_exists($path)) {
+                unlink($path);
+            }
+        }
     }
 
     public function clear() 
@@ -113,7 +107,7 @@ class FileSystemCache
         $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($this->cacheDir),
                                                 RecursiveIteratorIterator::CHILD_FIRST);
         foreach ($iterator as $path) {
-            if( $path->isFile() ) {
+            if ($path->isFile()) {
                 unlink( $path->__toString() );
             }
         }

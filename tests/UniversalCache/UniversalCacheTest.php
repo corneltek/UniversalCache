@@ -3,16 +3,14 @@ use UniversalCache\UniversalCache;
 
 class UniversalCacheTest extends PHPUnit_Framework_TestCase
 {
-    function test()
+    public function test()
     {
         $memory = UniversalCache::create('MemoryCache');
-        ok( $memory );
         $memory->set( 'foo' , '123' );
-        ok( $memory->get('foo') );
+        $this->assertEquals('123',$memory->get('foo'));
 
         $c = new UniversalCache(array($memory));
-        ok( $c );
-        ok( $c->get('foo') );
+        $this->assertEquals('123',$c->get('foo'));
     }
 }
 
