@@ -16,7 +16,7 @@ class ApcCache
 
     public $defaultExpiry = 0;
 
-    public function __construct($namespace, $defaultExpiry = 0) {
+    public function __construct($namespace, $defaultExpiry = 0)
     {
         $this->namespace = $namespace;
         $this->defaultExpiry = $defaultExpiry;
