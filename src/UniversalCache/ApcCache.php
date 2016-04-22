@@ -16,14 +16,10 @@ class ApcCache
 
     public $defaultExpiry = 0;
 
-    public function __construct( $options = array() )
+    public function __construct($namespace, $defaultExpiry = 0) {
     {
-        if ( isset($options['namespace']) ) {
-            $this->namespace = $options['namespace'];
-        }
-        if ( isset($options['default_expiry'] ) ) {
-            $this->defaultExpiry = $options['default_expiry'];
-        }
+        $this->namespace = $namespace;
+        $this->defaultExpiry = $defaultExpiry;
     }
 
     public function get($key)
