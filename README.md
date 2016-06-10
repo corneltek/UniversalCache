@@ -14,36 +14,22 @@ you may put the fastest cache backend to the first position, so that
 you can fetch the cache very quickly.
 
 ```php
-use UniversalCache;
+use UniversalCache\UniversalCache;
+use UniversalCache\ApcuCache;
+use UniversalCache\FileSystemCache;
+
 $cache = new UniversalCache(array( 
-new ApcCache(array( 'namespace' => 'app_' )),
-new FileSystemCache(array( 'cache_dir' => ... ))
+    new ApcuCache(array( 'namespace' => 'app_' )),
+    new FileSystemCache(array( 'cache_dir' => ... ))
 ));
 $cache->set('key', 'value');
 $value = $cache->get('key');
 ```
 
+### ApcuCache
 
 ```php
-$memory      = UniversalCache::create( 'MemoryCache' );
-$memcache    = UniversalCache::create( 'MemcacheCache' );
-
-$c = new UniversalCache(array($memory,$memcache));
-$c->set( 'foo' , 123 );
-
-$memory->set( 'foo' , '123' );
-$val = $memory->get('foo');
-
-$memcache->set('foo', '123' );
-$memcache->get('foo', '123' );
-```
-
-
-
-### ApcCache
-
-```php
-$cache = new UniversalCache\ApcCache(array( 
+$cache = new UniversalCache\ApcuCache(array( 
     'namespace' => 'app_',
     'default_expiry' => 3600,
 ));
@@ -101,8 +87,6 @@ ok( null === $cache->get( $url ) );
 Hacking
 ===========
 
-    $ pear install -a -f corneltek/Universal
-    $ pear install -a -f corneltek/PHPUnit_TestMore
-    $ onion install
-    $ phpunit
+    composer install --prefer-source
+    phpunit
 
