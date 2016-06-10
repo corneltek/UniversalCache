@@ -3,6 +3,10 @@ UniversalCache
 
 [![Build Status](https://travis-ci.org/corneltek/UniversalCache.svg?branch=master)](https://travis-ci.org/corneltek/UniversalCache)
 
+[![Latest Stable Version](https://poser.pugx.org/corneltek/universal-cache/v/stable)](https://packagist.org/packages/corneltek/universal-cache)
+
+[![Total Downloads](https://poser.pugx.org/corneltek/universal-cache/downloads)](https://packagist.org/packages/corneltek/universal-cache)
+
 A Generic Cache Interface for PHP.
 
 ### UniversalCache Interface
