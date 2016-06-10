@@ -4,7 +4,7 @@
     "description": "General cache interface",
     "require": {
         "php": ">=5.5.0",
-        "corneltek/fileutil": "~1.6"
+        "corneltek/fileutil": "^1.6"
     },
     "require-dev": { "corneltek\/phpunit-testmore": "dev-master" },
     "license": "MIT",
@@ -15,6 +15,6 @@
             "homepage": "http:\/\/c9s.me"
         }
     ],
-    "extra": { "branch-alias": { "dev-master": "2.0.x-dev" } },
+    "extra": { "branch-alias": { "dev-master": "3.0.x-dev" } },
     "autoload": { "psr-4": { "UniversalCache\\": "src/UniversalCache/" } }
 }
