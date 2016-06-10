@@ -6,6 +6,9 @@
         "php": ">=5.5.0",
         "corneltek/fileutil": "^1.6"
     },
+    "suggest": {
+        "ext-apcu": "APCu extension"
+    },
     "require-dev": { "corneltek\/phpunit-testmore": "dev-master" },
     "license": "MIT",
     "authors": [
