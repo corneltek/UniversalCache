@@ -1,5 +1,8 @@
 UniversalCache
 ========
+
+[![Build Status](https://travis-ci.org/corneltek/UniversalCache.svg?branch=master)](https://travis-ci.org/corneltek/UniversalCache)
+
 A Generic Cache Interface for PHP.
 
 ### UniversalCache Interface
