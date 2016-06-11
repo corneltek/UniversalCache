@@ -2,7 +2,10 @@
     "name": "corneltek/universal-cache",
     "homepage": "http://github.com/corneltek/UniversalCache",
     "description": "A Generic PHP Cache Interface with Cascade Caching",
-    "require": { "php": ">=5.5.0", "corneltek/fileutil": "^1.7" },
+    "require": {
+        "php": ">=5.4.0",
+        "corneltek/fileutil": "^1.7"
+    },
     "suggest": {
         "ext-apcu": "for apcu extension based backend",
         "ext-redis": "for redis backend"
