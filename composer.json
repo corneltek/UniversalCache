@@ -7,7 +7,8 @@
         "corneltek/fileutil": "^1.6"
     },
     "suggest": {
-        "ext-apcu": "APCu extension"
+        "ext-apcu": "for apcu extension based backend",
+        "ext-redis": "for redis backend"
     },
     "require-dev": { "corneltek\/phpunit-testmore": "dev-master" },
     "license": "MIT",
