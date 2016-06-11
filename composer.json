@@ -1,27 +1,18 @@
 {
-    "name": "corneltek\/universal-cache",
-    "homepage": "http:\/\/github.com\/c9s\/UniversalCache",
+    "name": "corneltek/universal-cache",
+    "homepage": "http://github.com/corneltek/UniversalCache",
     "description": "A Generic PHP Cache Interface with Cascade Caching",
-    "require": {
-        "php": ">=5.5.0",
-        "corneltek/fileutil": "^1.6"
-    },
+    "require": { "php": ">=5.5.0", "corneltek/fileutil": "^1.7" },
     "suggest": {
         "ext-apcu": "for apcu extension based backend",
         "ext-redis": "for redis backend"
     },
     "require-dev": {
         "corneltek/serializerkit": "dev-master",
-        "corneltek\/phpunit-testmore": "dev-master"
+        "corneltek/phpunit-testmore": "dev-master"
     },
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Yo-An Lin",
-            "email": "cornelius.howl@gmail.com",
-            "homepage": "http:\/\/c9s.me"
-        }
-    ],
+    "authors": [ { "name": "Yo-An Lin", "email": "yoanlin93@gmail.com" } ],
     "extra": { "branch-alias": { "dev-master": "3.2.x-dev" } },
     "autoload": { "psr-4": { "UniversalCache\\": "src/" } }
 }
