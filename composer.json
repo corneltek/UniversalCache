@@ -16,6 +16,6 @@
     },
     "license": "MIT",
     "authors": [ { "name": "Yo-An Lin", "email": "yoanlin93@gmail.com" } ],
-    "extra": { "branch-alias": { "dev-master": "3.2.x-dev" } },
+    "extra": { "branch-alias": { "dev-master": "3.3.x-dev" } },
     "autoload": { "psr-4": { "UniversalCache\\": "src/" } }
 }
