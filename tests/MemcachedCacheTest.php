@@ -13,4 +13,15 @@ class MemcachedCacheTest extends CacheTestCase
         $this->assertSame($val, $cache->get($key));
         $cache->remove($key);
     }
+
+    /**
+     * @dataProvider cacheDataProvider
+     */
+    public function testOneServer($key, $val)
+    {
+        $cache = new MemcachedCache(['server' => ['localhost', 11211]]);
+        $cache->set($key, $val);
+        $this->assertSame($val, $cache->get($key));
+        $cache->remove($key);
+    }
 }
