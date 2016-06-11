@@ -79,10 +79,19 @@ $val = $cache->get($name);
 $cache->remove($name);
 ```
 
+### RedisCache
+
+```php
+$cache = new UniversalCache\RedisCache($redisConnection);
+$cache->set($name,$val);
+$val = $cache->get($name);
+$cache->remove($name);
+```
+
 
 ### FileSystemCache
 
-```
+```php
 $serializer = new SerializerKit\JsonSerializer();
 $cache = new UniversalCache\FileSystemCache(__DIR__ . '/cache', [
     'expiry' => 30,
