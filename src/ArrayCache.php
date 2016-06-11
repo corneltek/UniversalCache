@@ -1,7 +1,7 @@
 <?php
 namespace UniversalCache;
 
-class MemoryCache
+class ArrayCache
 {
     private $_cache = array();
 

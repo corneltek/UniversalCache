@@ -23,22 +23,25 @@ This package was inspired by a Perl module - Cache::Cascade.
 > The benefits of using a cascade are that if the chance of a hit is much higher in a slow cache, but checking a cheap cache is negligible in comparison, we may already have the result we want in the cheap cache. Configure your expiration policy so that there is approximately an order of magnitude better probability of cache hits (bigger cache) for each level of the cascade.
 
 
+## INSTALL
 
-### UniversalCache Interface
+    composer require corneltek/universal-cache
+
+### UniversalCache
 
 UniversalCache class provides an interface to operate on different cache backend,
 you may put the fastest cache backend to the first position, so that 
 you can fetch the cache very quickly.
 
 ```php
-use UniversalCache\UniversalCache;
 use UniversalCache\ApcuCache;
 use UniversalCache\FileSystemCache;
+use UniversalCache\UniversalCache;
 
-$cache = new UniversalCache(array( 
-    new ApcuCache(array( 'namespace' => 'app_' )),
-    new FileSystemCache(array( 'cache_dir' => ... ))
-));
+$cache = new UniversalCache([
+    new ApcuCache('app_', 60),
+    new FileSystemCache(__DIR__ . '/cache')
+]);
 $cache->set('key', 'value');
 $value = $cache->get('key');
 ```
@@ -46,19 +49,16 @@ $value = $cache->get('key');
 ### ApcuCache
 
 ```php
-$cache = new UniversalCache\ApcuCache(array( 
-    'namespace' => 'app_',
-    'default_expiry' => 3600,
-));
+$cache = new UniversalCache\ApcuCache('app_', 3600); // 3600 = expiry time
 $cache->set($name,$val);
 $val = $cache->get($name);
 $cache->remove($name);
 ```
 
-### MemoryCache
+### ArrayCache
 
 ```php
-$cache = new UniversalCache\MemoryCache;
+$cache = new UniversalCache\ArrayCache;
 $cache->set($name,$val);
 $val = $cache->get($name);
 $cache->remove($name);
