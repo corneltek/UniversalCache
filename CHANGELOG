@@ -1,0 +1,9 @@
+
+Version 3.3.0 - Sat Jun 11 15:27:53 2016
+
+- Added APCu cache backend.
+- Added Memcached cache backend.
+- Added Redis cache backend.
+- Renamed MemoryCache to ArrayCache.
+- Renamed Cacher interface to Cache
+
