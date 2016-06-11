@@ -3,10 +3,12 @@ UniversalCache
 
 [![Build Status](https://travis-ci.org/corneltek/UniversalCache.svg?branch=master)](https://travis-ci.org/corneltek/UniversalCache)
 [![Latest Stable Version](https://poser.pugx.org/corneltek/universal-cache/v/stable)](https://packagist.org/packages/corneltek/universal-cache)
+[![Latest Unstable Version](https://poser.pugx.org/corneltek/universal-cache/v/unstable)](https://packagist.org/packages/corneltek/universal-cache)
 [![Total Downloads](https://poser.pugx.org/corneltek/universal-cache/downloads)](https://packagist.org/packages/corneltek/universal-cache)
+[![Monthly Downloads](https://poser.pugx.org/corneltek/universal-cache/d/monthly)](https://packagist.org/packages/corneltek/universal-cache)
+[![License](https://poser.pugx.org/corneltek/universal-cache/license)](https://packagist.org/packages/corneltek/universal-cache)
 
 A Generic PHP Cache Interface with Cascade Caching.
-
 
 ## DESCRIPTION
 
