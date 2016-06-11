@@ -123,6 +123,11 @@ Install APCu extension
 
     phpbrew ext install github:krakjoe/apcu
 
+Be sure to enable apcu and cli mode
+
+    apc.enabled=1
+    apc.enable_cli=1
+
 Run tests
 
     phpunit
