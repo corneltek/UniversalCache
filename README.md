@@ -32,8 +32,9 @@ This package was inspired by a Perl module - Cache::Cascade.
 ### UniversalCache
 
 UniversalCache class provides a consistent interface to operate on different
-cache backend, you may put the fastest cache backend to the first position, so
-that you can fetch the cache very quickly.
+cache backend, you may put the fastest cache backend on the first position, so
+that you can fetch the cache very quickly when there is a fresh cache in the
+fastest storage.
 
 ```php
 use UniversalCache\ApcuCache;
@@ -41,8 +42,8 @@ use UniversalCache\FileSystemCache;
 use UniversalCache\UniversalCache;
 
 $cache = new UniversalCache([
-    new ArrayCache, // we can fetch cache without serialization, if there is a request-wide cache exists.
-    new ApcuCache('app_', 60), // faster then file system cache.
+    new ArrayCache, // Fetch cache without serialization if there is a request-wide cache exists.
+    new ApcuCache('app_', 60), // Faster then file system cache.
     new FileSystemCache(__DIR__ . '/cache'),
 ]);
 $cache->set('key', 'value');
