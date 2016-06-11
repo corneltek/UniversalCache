@@ -5,7 +5,7 @@ class UniversalCacheTest extends PHPUnit_Framework_TestCase
 {
     public function test()
     {
-        $memory = UniversalCache::create('MemoryCache');
+        $memory = new \UniversalCache\MemoryCache;
         $memory->set( 'foo' , '123' );
         $this->assertEquals('123',$memory->get('foo'));
 

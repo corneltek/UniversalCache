@@ -47,25 +47,58 @@ class UniversalCache
     }
 
 
+
+    /**
+     * tryGet gets the cache from backend, if exception happens, 
+     * it (could) log the exception and skip to the next cache backend.
+     *
+     * @param string $key
+     */
+    public function tryGet($key)
+    {
+        foreach ($this->backends as $b) {
+            try {
+                if (($value = $b->get( $key )) !== false) {
+                    return $value;
+                }
+            } catch (Exception $e) {
+                // todo: shall we log this error?
+                continue;
+            }
+        }
+        return null;
+    }
+
+
+
     /**
      * Recursively get the value from backends when there is a cache
+     *
+     * @param string $key
      */
-    public function get( $key )
+    public function get($key)
     {
         foreach ($this->backends as $b) {
             if (($value = $b->get( $key )) !== false) {
                 return $value;
             }
         }
+        return null;
     }
 
-    public function set( $key , $value , $ttl = 1000 ) 
+    public function set($key, $value, $ttl = 1000)
     {
-        foreach( $this->backends as $b ) {
-            $b->set( $key , $value , $ttl );
+        foreach ($this->backends as $b) {
+            $b->set($key, $value, $ttl);
         }
     }
 
+
+    /**
+     * Remove cache from every backend.
+     *
+     * @param string $key
+     */
     public function remove($key)
     {
         foreach ($this->backends as $b) {
@@ -73,9 +106,13 @@ class UniversalCache
         }
     }
 
+
+    /**
+     * Clean up all caches from every backend.
+     */
     public function clear()
     {
-        foreach( $this->backends as $b ) {
+        foreach ($this->backends as $b) {
             $b->clear();
         }
     }
@@ -84,18 +121,4 @@ class UniversalCache
     {
         return $this->backends;
     }
-
-    public static function create()
-    {
-        $args = func_get_args();
-        $class = array_shift( $args );
-        $backendClass = '\\UniversalCache\\' . $class;
-        $rc = new ReflectionClass($backendClass);
-        $b = $rc->newInstanceArgs($args);
-
-        // $b = call_user_func_array( array($backendClass,'new') , $args );
-        // $b = new $backendClass( $args );
-        return $b;
-    }
-
 }
