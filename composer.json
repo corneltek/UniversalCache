@@ -19,5 +19,5 @@
         }
     ],
     "extra": { "branch-alias": { "dev-master": "3.0.x-dev" } },
-    "autoload": { "psr-4": { "UniversalCache\\": "src/UniversalCache/" } }
+    "autoload": { "psr-4": { "UniversalCache\\": "src/" } }
 }
