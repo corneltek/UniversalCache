@@ -36,20 +36,24 @@ class UniversalCache
 {
     private $backends = array();
 
-    public function __construct($backends)
+    public function __construct(array $backends = array())
     {
-        $this->backends = (array)$backends;
+        $this->backends = $backends;
     }
 
-    public function addBackend( $backend )
+    public function addBackend(Cacher $backend)
     {
         $this->backends[] = $backend;
     }
 
+
+    /**
+     * Recursively get the value from backends when there is a cache
+     */
     public function get( $key )
     {
-        foreach( $this->backends as $b ) {
-            if( ($value = $b->get( $key )) !== false ) {
+        foreach ($this->backends as $b) {
+            if (($value = $b->get( $key )) !== false) {
                 return $value;
             }
         }
@@ -64,7 +68,7 @@ class UniversalCache
 
     public function remove($key)
     {
-        foreach( $this->backends as $b ) {
+        foreach ($this->backends as $b) {
             $b->remove( $key );
         }
     }

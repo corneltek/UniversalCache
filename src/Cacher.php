@@ -10,7 +10,7 @@
  */
 namespace UniversalCache;
 
-interface CacheInterface
+interface Cacher
 {
     public function get($key);
     public function set($key,$value,$ttl = 0);
