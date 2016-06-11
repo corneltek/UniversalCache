@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  *
  */
-namespace UniversalCache;
-use ReflectionClass;
-use Exception;
 
+namespace UniversalCache;
+
+use Exception;
 
 /**
  * UniversalCache class provides an interface to operate data on different 
@@ -29,10 +29,8 @@ use Exception;
  *    ));
  *    $cache->set('key', 'value');
  *    $value = $cache->get('key');
- *
  */
-
-class UniversalCache 
+class UniversalCache
 {
     private $backends = array();
 
@@ -46,8 +44,6 @@ class UniversalCache
         $this->backends[] = $backend;
     }
 
-
-
     /**
      * tryGet gets the cache from backend, if exception happens, 
      * it (could) log the exception and skip to the next cache backend.
@@ -58,7 +54,7 @@ class UniversalCache
     {
         foreach ($this->backends as $b) {
             try {
-                if (($value = $b->get( $key )) !== false) {
+                if (($value = $b->get($key)) !== false) {
                     return $value;
                 }
             } catch (Exception $e) {
@@ -66,24 +62,24 @@ class UniversalCache
                 continue;
             }
         }
-        return null;
+
+        return;
     }
 
-
-
     /**
-     * Recursively get the value from backends when there is a cache
+     * Recursively get the value from backends when there is a cache.
      *
      * @param string $key
      */
     public function get($key)
     {
         foreach ($this->backends as $b) {
-            if (($value = $b->get( $key )) !== false) {
+            if (($value = $b->get($key)) !== false) {
                 return $value;
             }
         }
-        return null;
+
+        return;
     }
 
     public function set($key, $value, $ttl = 1000)
@@ -93,7 +89,6 @@ class UniversalCache
         }
     }
 
-
     /**
      * Remove cache from every backend.
      *
@@ -102,10 +97,9 @@ class UniversalCache
     public function remove($key)
     {
         foreach ($this->backends as $b) {
-            $b->remove( $key );
+            $b->remove($key);
         }
     }
-
 
     /**
      * Clean up all caches from every backend.

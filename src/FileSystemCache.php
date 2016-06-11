@@ -1,8 +1,9 @@
 <?php
+
 namespace UniversalCache;
+
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
-use SerializerKit;
 
 class FileSystemCache
 {
@@ -25,39 +26,42 @@ class FileSystemCache
         if (isset($options['serializer'])) {
             $this->serializer = $options['serializer'];
         }
-        $this->filenameBuilder = function($key) {
-            return preg_replace('#\W+#','_',$key);
+        $this->filenameBuilder = function ($key) {
+            return preg_replace('#\W+#', '_', $key);
         };
     }
 
     private function _getCacheFilepath($key)
     {
-        $filename = preg_replace('#\W+#','_',$key);
-        $fregdir   = $this->cacheDir . DIRECTORY_SEPARATOR . crc32($key);
+        $filename = preg_replace('#\W+#', '_', $key);
+        $fregdir = $this->cacheDir.DIRECTORY_SEPARATOR.crc32($key);
         if (!file_exists($fregdir)) {
             mkdir($fregdir, $this->umask, true);
         }
-        return $fregdir . DIRECTORY_SEPARATOR . $filename;
+
+        return $fregdir.DIRECTORY_SEPARATOR.$filename;
     }
 
-    private function _decodeFile($file) 
+    private function _decodeFile($file)
     {
         $content = file_get_contents($file);
         if ($this->serializer) {
-            return $this->serializer->decode( $content );
+            return $this->serializer->decode($content);
         }
+
         return unserialize($content);
     }
 
-    private function _encodeFile($file,$data)
+    private function _encodeFile($file, $data)
     {
         $content = null;
         if ($this->serializer) {
-            $content = $this->serializer->encode( $data );
+            $content = $this->serializer->encode($data);
         } else {
             $content = serialize($data);
         }
-        return file_put_contents( $file, $content );
+
+        return file_put_contents($file, $content);
     }
 
     public function __get($key)
@@ -65,35 +69,35 @@ class FileSystemCache
         return $this->get($key);
     }
 
-    public function __set($key,$val)
+    public function __set($key, $val)
     {
-        return $this->set($key,$val);
+        return $this->set($key, $val);
     }
 
-    public function get($key) 
+    public function get($key)
     {
         $path = $this->_getCacheFilepath($key);
 
-        if ( ! file_exists($path) ) {
-            return null;
+        if (!file_exists($path)) {
+            return;
         }
 
         // is expired ?
-        if( $this->expiry && (time() - filemtime($path)) > $this->expiry ) {
-            return null;
+        if ($this->expiry && (time() - filemtime($path)) > $this->expiry) {
+            return;
         }
 
         return $this->_decodeFile($path);
     }
 
-    public function set($key,$value,$ttl = 0) 
+    public function set($key, $value, $ttl = 0)
     {
         if ($path = $this->_getCacheFilepath($key)) {
-            return $this->_encodeFile($path,$value) !== false;
+            return $this->_encodeFile($path, $value) !== false;
         }
     }
 
-    public function remove($key) 
+    public function remove($key)
     {
         if ($path = $this->_getCacheFilepath($key)) {
             if (file_exists($path)) {
@@ -102,19 +106,14 @@ class FileSystemCache
         }
     }
 
-    public function clear() 
+    public function clear()
     {
         $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($this->cacheDir),
                                                 RecursiveIteratorIterator::CHILD_FIRST);
         foreach ($iterator as $path) {
             if ($path->isFile()) {
-                unlink( $path->__toString() );
+                unlink($path->__toString());
             }
         }
     }
 }
-
-
-
-
-

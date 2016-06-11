@@ -1,4 +1,5 @@
 <?php
+
 namespace UniversalCache;
 
 class ArrayCache
@@ -7,18 +8,19 @@ class ArrayCache
 
     public function get($key)
     {
-        if ( isset($this->_cache[ $key ] ) )
+        if (isset($this->_cache[ $key ])) {
             return $this->_cache[ $key ];
+        }
     }
 
-    public function set($key,$value,$ttl = 0)
+    public function set($key, $value, $ttl = 0)
     {
         $this->_cache[ $key ] = $value;
     }
 
-    public function __set($key,$value)
+    public function __set($key, $value)
     {
-        $this->set($key,$value);
+        $this->set($key, $value);
     }
 
     public function __get($key)
@@ -28,7 +30,7 @@ class ArrayCache
 
     public function remove($key)
     {
-        unset( $this->_cache[ $key ] );
+        unset($this->_cache[ $key ]);
     }
 
     public function clear()
@@ -36,10 +38,10 @@ class ArrayCache
         $this->_cache = array();
     }
 
-    static function getInstance()
+    public static function getInstance()
     {
         static $instance;
-        return $instance ? $instance : $instance = new static;
-    }
 
+        return $instance ? $instance : $instance = new static();
+    }
 }

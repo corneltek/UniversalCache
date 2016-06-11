@@ -8,36 +8,36 @@
  * file that was distributed with this source code.
  *
  */
+
 namespace UniversalCache;
+
 use Memcache;
-use Exception;
 use RuntimeException;
 
-class MemcacheCache 
+class MemcacheCache
 {
     private $handle;
 
     public $compress = false;
 
     /**
-     * @param array $options 
+     * @param array $options
      *
      *    servers [ ['localhost',65566], [...] ]
      */
-    public function __construct($options = array() )
+    public function __construct($options = array())
     {
-        $this->handle = new Memcache;
-        if ( isset($options['server']) ) {
+        $this->handle = new Memcache();
+        if (isset($options['server'])) {
             $server = $options['server'];
-            if ( false === $this->handle->addServer( $server[0] , $server[1] ) ) {
-                throw new RuntimeException("Could not add memcache server.");
+            if (false === $this->handle->addServer($server[0], $server[1])) {
+                throw new RuntimeException('Could not add memcache server.');
             }
-        }
-        elseif ( isset($options['servers']) ) {
+        } elseif (isset($options['servers'])) {
             $servers = $options['servers'];
-            foreach( $servers as $server ) {
-                if ( false === $this->handle->addServer( $server[0] , $server[1] ) ) {
-                    throw new RuntimeException("Could not add memcache server.");
+            foreach ($servers as $server) {
+                if (false === $this->handle->addServer($server[0], $server[1])) {
+                    throw new RuntimeException('Could not add memcache server.');
                 }
             }
         }
@@ -53,20 +53,20 @@ class MemcacheCache
         return $this->get($key);
     }
 
-    public function __set($key,$val)
+    public function __set($key, $val)
     {
-        return $this->set($key,$val);
+        return $this->set($key, $val);
     }
 
-    public function set($key,$value,$ttl = 0)
+    public function set($key, $value, $ttl = 0)
     {
-        $this->handle->set( $key , serialize( $value ) , $this->compress , $ttl );
+        $this->handle->set($key, serialize($value), $this->compress, $ttl);
     }
 
     public function get($key)
     {
-        $v = $this->handle->get( $key );
-        if ( $v ) {
+        $v = $this->handle->get($key);
+        if ($v) {
             return unserialize($v);
         }
     }
@@ -81,11 +81,10 @@ class MemcacheCache
         $this->handle->flush();
     }
 
-    static function getInstance()
+    public static function getInstance()
     {
         static $instance;
-        return $instance ? $instance : $instance = new static;
+
+        return $instance ? $instance : $instance = new static();
     }
-
 }
-

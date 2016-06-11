@@ -1,5 +1,7 @@
 <?php
+
 namespace UniversalCache;
+
 use Redis;
 
 class RedisCache implements Cacher
@@ -10,7 +12,6 @@ class RedisCache implements Cacher
     {
         $this->conn = $conn;
     }
-
 
     public function get($key)
     {
@@ -27,7 +28,6 @@ class RedisCache implements Cacher
         $this->conn->delete($key);
     }
 
-
     /**
      * clear() invoke flushDb method on redis connection.
      */
@@ -36,8 +36,3 @@ class RedisCache implements Cacher
         $this->conn->flushDb();
     }
 }
-
-
-
-
-
