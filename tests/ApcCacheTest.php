@@ -23,6 +23,7 @@ class ApcCacheTest extends CacheTestCase
         $cache = new UniversalCache\ApcCache('app_');
         $cache->set($key, $val);
         $this->assertSame($val, $cache->get($key));
+        $cache->remove($key);
     }
     
 

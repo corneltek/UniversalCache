@@ -14,6 +14,7 @@ class FileSystemCacheTest extends CacheTestCase
         ));
         $cache->set($key, $val);
         $this->assertSame($val, $cache->get($key));
+        $cache->remove($key);
         $cache->clear();
     }
 }
