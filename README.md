@@ -102,9 +102,28 @@ $cache = new UniversalCache\FileSystemCache(__DIR__ . '/cache', [
 ]);
 ```
 
+
+
 Hacking
 ===========
 
+Install dependencies
+
     composer install --prefer-source
+
+Install redis extension
+
+    phpbrew ext install github:phpredis/phpredis php7
+
+Install memcached extension
+
+    phpbrew ext install github:php-memcached-dev/php-memcached php7 -- --disable-memcached-sasl
+
+Run tests
+
     phpunit
 
+
+## LICENSE
+
+This package is released under MIT license.

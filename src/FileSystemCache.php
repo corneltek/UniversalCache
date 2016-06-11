@@ -5,7 +5,7 @@ namespace UniversalCache;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 
-class FileSystemCache
+class FileSystemCache implements Cacher
 {
     public $expiry; // seconds
 

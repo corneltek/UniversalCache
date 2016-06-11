@@ -11,7 +11,7 @@
 
 namespace UniversalCache;
 
-class ApcuCache
+class ApcuCache implements Cacher
 {
     public $namespace = '';
 

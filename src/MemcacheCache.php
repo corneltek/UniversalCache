@@ -14,7 +14,7 @@ namespace UniversalCache;
 use Memcache;
 use RuntimeException;
 
-class MemcacheCache
+class MemcacheCache implements Cacher
 {
     private $handle;
 
