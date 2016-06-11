@@ -22,6 +22,6 @@
             "homepage": "http:\/\/c9s.me"
         }
     ],
-    "extra": { "branch-alias": { "dev-master": "3.0.x-dev" } },
+    "extra": { "branch-alias": { "dev-master": "3.2.x-dev" } },
     "autoload": { "psr-4": { "UniversalCache\\": "src/" } }
 }
