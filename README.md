@@ -104,8 +104,7 @@ $cache = new UniversalCache\FileSystemCache(__DIR__ . '/cache', [
 
 
 
-Hacking
-===========
+## Hacking
 
 Install dependencies
 
