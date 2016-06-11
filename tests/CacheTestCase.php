@@ -1,7 +1,6 @@
 <?php
 abstract class CacheTestCase extends PHPUnit_Framework_TestCase
 {
-
     public function cacheDataProvider()
     {
         return array(
@@ -13,5 +12,4 @@ abstract class CacheTestCase extends PHPUnit_Framework_TestCase
             array('key', array(0,1,2,3)),
         );
     }
-
 }
