@@ -4,7 +4,7 @@ namespace UniversalCache;
 
 use Redis;
 
-class RedisCache implements Cacher
+class RedisCache implements Cache
 {
     protected $conn;
 

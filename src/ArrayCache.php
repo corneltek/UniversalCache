@@ -2,7 +2,7 @@
 
 namespace UniversalCache;
 
-class ArrayCache implements Cacher
+class ArrayCache implements Cache
 {
     private $_cache = array();
 

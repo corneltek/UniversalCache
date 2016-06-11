@@ -39,7 +39,7 @@ class UniversalCache
         $this->backends = $backends;
     }
 
-    public function addBackend(Cacher $backend)
+    public function addBackend(Cache $backend)
     {
         $this->backends[] = $backend;
     }

@@ -11,7 +11,7 @@
 
 namespace UniversalCache;
 
-interface Cacher
+interface Cache
 {
     public function get($key);
 
