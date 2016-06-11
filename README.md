@@ -119,6 +119,10 @@ Install memcached extension
 
     phpbrew ext install github:php-memcached-dev/php-memcached php7 -- --disable-memcached-sasl
 
+Install APCu extension
+
+    phpbrew ext install github:krakjoe/apcu
+
 Run tests
 
     phpunit

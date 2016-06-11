@@ -1,11 +1,11 @@
 <?php
 
-class ApcCacheTest extends CacheTestCase
+class ApcuCacheTest extends CacheTestCase
 {
     public function setUp()
     {
-        if (version_compare(phpversion(),"5.5") > 0) {
-            $this->markTestSkipped("apc test is only for php 5.3 and 5.4");
+        if (version_compare(phpversion(),"5.5") < 0) {
+            $this->markTestSkipped("apc test is only for php >= 5.5");
         }
         if (!ini_get('apc.enabled')) {
             $this->markTestSkipped("apc.enabled must be true, see 'php --ri apuc'");
@@ -20,7 +20,7 @@ class ApcCacheTest extends CacheTestCase
      */
     public function testSimple($key, $val)
     {
-        $cache = new UniversalCache\ApcCache('app_');
+        $cache = new \UniversalCache\ApcuCache('app_');
         $cache->set($key, $val);
         $this->assertSame($val, $cache->get($key));
     }

@@ -59,7 +59,6 @@ class ApcuCache implements Cacher
     public static function getInstance()
     {
         static $instance;
-
         return $instance ? $instance : $instance = new static();
     }
 }
