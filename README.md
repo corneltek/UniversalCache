@@ -5,7 +5,7 @@ UniversalCache
 [![Latest Stable Version](https://poser.pugx.org/corneltek/universal-cache/v/stable)](https://packagist.org/packages/corneltek/universal-cache)
 [![Total Downloads](https://poser.pugx.org/corneltek/universal-cache/downloads)](https://packagist.org/packages/corneltek/universal-cache)
 
-A Generic Cache Interface for PHP.
+A Generic PHP Cache Interface with Cascade Caching.
 
 
 ## DESCRIPTION
