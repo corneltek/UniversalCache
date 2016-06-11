@@ -16,6 +16,7 @@ use RuntimeException;
 class MemcacheCache 
 {
     private $handle;
+
     public $compress = false;
 
     /**

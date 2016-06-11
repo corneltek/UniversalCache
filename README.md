@@ -71,9 +71,9 @@ $cache->remove($name);
 ### MemcacheCache
 
 ```php
-$cache = new UniversalCache\MemcacheCache(array( 
-    'servers' => [ ['localhost', 123123], ['server2',123123] ]
-));
+$cache = new UniversalCache\MemcacheCache([
+    'servers' => [['localhost', 123123], ['server2',123123] ]
+]);
 $cache->set($name,$val);
 $val = $cache->get($name);
 $cache->remove($name);
@@ -83,27 +83,12 @@ $cache->remove($name);
 ### FileSystemCache
 
 ```
-$serializer = new SerializerKit\Serializer('json');
-$cache = new UniversalCache\FileSystemCache(array( 
+$serializer = new SerializerKit\JsonSerializer();
+$cache = new UniversalCache\FileSystemCache(__DIR__ . '/cache', [
     'expiry' => 30,
-    'cache_dir' => 'cache',
     'serializer' => $serializer,
-));
-$cache->clear();
-
-$url = 'foo_bar';
-$html = 'test content';
-$cache->set( $url , $html );
-
-$cache->remove( $url );
-
-ok( null === $cache->get( $url ) );
-
-$cache->clear();
-
-ok( null === $cache->get( $url ) );
+]);
 ```
-
 
 Hacking
 ===========
