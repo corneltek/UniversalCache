@@ -1,18 +1,8 @@
 <?php
 use UniversalCache\MemcachedCache;
 
-class MemcachedCacheTest extends PHPUnit_Framework_TestCase
+class MemcachedCacheTest extends CacheTestCase
 {
-    public function cacheDataProvider()
-    {
-        return array(
-            array('key','value'),
-            array('key', 1),
-            array('key', 1.05),
-            array('key', array(0,1,2,3)),
-        );
-    }
-
     /**
      * @dataProvider cacheDataProvider
      */
